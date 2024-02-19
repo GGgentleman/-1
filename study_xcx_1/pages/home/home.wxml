@@ -1,0 +1,35 @@
+<!--pages/home/home.wxml-->
+<camera style="width: 100%;height: {{wh}}px;" device-position="{{position}}" wx:if="{{src === ''}}">
+<view class="btns-box">
+	<image src="/images/qh.png" bindtap="reverse" mode=""/>
+	<image src="/images/pz.png" bindtap="takePhoto" mode=""/>
+	<image src="/images/xc.png" bindtap="choosePhoto" mode=""/>	
+</view>
+</camera>
+<view wx:else="">
+	<image src="{{src}}" style="width: 100%;height: {{wh}}px;" display:block mode="aspectFit"/>
+	<button type="warn" class="reChoose" bindtap="reChoose">重选照片</button>
+
+	<view class="faceinfo-box" wx:if="{{faceinfo.age !== undefined}}">
+		<view class="row">
+		<text>年龄：{{faceinfo.age}}岁</text>
+		<text>性别：{{map.gender[faceinfo.gender.type]}}</text>
+		</view>
+		<view class="row">
+		<text>颜值：{{faceinfo.beauty}}分</text>
+		<text>表情：{{map.expression[faceinfo.expression.type]}}</text>
+		</view>
+		<view class="row">
+		<text>眼镜：{{map.glasses[faceinfo.glasses.type]}}</text>
+		<text>情绪：{{map.emotion[faceinfo.emotion.type]}}</text>
+		</view>
+	</view>
+	<view class="faceinfo-box" wx:else="">
+		<view class="row1">
+		<text>无法识别出人脸</text>
+		</view>
+		<view class="row1">
+		<text>请重选照片</text>
+		</view>
+	</view>
+</view>
